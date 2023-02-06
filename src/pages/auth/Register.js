@@ -5,10 +5,29 @@ import "./register.css"
 const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
   const navigate = useNavigate();
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
+    
+    const res = await fetch("http://127.0.0.1:8000/api/account/register/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // "XCSRF-Token": 
+      },
+      body: JSON.stringify({
+        email: email,
+        username: username,
+        password: password
+      })
+    })
+    
+    if (res.ok) {
+     // const data = await res.json()
+      navigate("/", {replace: true})
+    }
   }
 
   return (
@@ -17,6 +36,10 @@ const Register = () => {
         <div class="form__field">
           <label for="register__email"><svg class="icon"></svg><span class="hidden">Email</span></label>
           <input id="register__email" type="text" name="username" class="form__input" placeholder="Email" required onChange={(e) => setEmail(e.target.value)}/>
+        </div>
+        <div class="form__field">
+          <label for="register__username"><svg class="icon"></svg><span class="hidden">Username</span></label>
+          <input id="register__username" type="text" name="username" class="form__input" placeholder="Username" required onChange={(e) => setUsername(e.target.value)}/>
         </div>
         <div class="form__field">
           <label for="register__password"><svg class="icon"><i class='bx bxs-user'></i></svg><span class="hidden">Password</span></label>
