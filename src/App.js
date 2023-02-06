@@ -6,6 +6,7 @@ import Login from "./pages/auth/Login";
 import PasswordReset from "./pages/auth/PasswordReset";
 import NavBar from "./components/navbar/NavBar";
 import "./index.css"
+import Account from "./pages/account/Account";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/passwordreset" element={<PasswordReset />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
       </div>
     </>
