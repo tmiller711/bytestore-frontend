@@ -1,9 +1,11 @@
 import React, { useState } from "react"
+import { useNavigate, Link } from "react-router-dom"
 import "./register.css"
 
 const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -24,7 +26,7 @@ const Register = () => {
           <input type="submit" value="Sign Up" />
         </div>
       </form>
-      <p class="text--center">Already have an account? <a href="/login">Login now</a></p>
+      <p class="text--center">Already have an account? <Link to="/login">Login now</Link></p>
     </div>
   )
 }
