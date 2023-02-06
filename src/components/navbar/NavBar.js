@@ -7,8 +7,8 @@ const NavBar = () => {
     <div className="navbar">
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="#tset">test</a></li>
-        <li><a href="#test">test</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
         <li style={{float: "right"}}><a href="/account">Account</a></li>
       </ul>
     </div>
