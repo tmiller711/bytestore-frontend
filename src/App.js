@@ -7,6 +7,7 @@ import PasswordReset from "./pages/auth/PasswordReset";
 import NavBar from "./components/navbar/NavBar";
 import "./index.css"
 import Account from "./pages/account/Account";
+import ActivatePage from "./pages/Activate";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/passwordreset" element={<PasswordReset />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/activate" element={<ActivatePage />} />
         </Routes>
       </div>
     </>
