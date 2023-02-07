@@ -7,7 +7,7 @@ import PasswordReset from "./pages/auth/PasswordReset";
 import NavBar from "./components/navbar/NavBar";
 import "./index.css"
 import Account from "./pages/account/Account";
-import ActivatePage from "./pages/Activate";
+import ActivatePage from "./pages/ActivatePage";
 
 function App() {
   return (
