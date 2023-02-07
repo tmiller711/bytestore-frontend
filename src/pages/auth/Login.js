@@ -1,11 +1,14 @@
 import React, { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import "./login.css"
+import { loginSuccess } from "../../userSlice"
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -23,7 +26,12 @@ const Login = () => {
     })
     
     if (res.ok) {
-     // const data = await res.json()
+      const data = await res.json()
+      dispatch(loginSuccess({
+        id: data.id,
+        email: data.email,
+        username: data.username,
+      }));
       navigate("/", {replace: true})
     }
   }
