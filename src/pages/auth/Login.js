@@ -17,7 +17,6 @@ const Login = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // "XCSRF-Token": 
       },
       body: JSON.stringify({
         email: email,
@@ -31,6 +30,7 @@ const Login = () => {
         id: data.id,
         email: data.email,
         username: data.username,
+        token: data.jwt_token
       }));
       navigate("/", {replace: true})
     }
