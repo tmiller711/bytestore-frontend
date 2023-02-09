@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import "./login.css"
 import { loginSuccess } from "../../userSlice"
+import jwtDecode from "jwt-decode"
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -13,26 +14,53 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault()
 
-    const res = await fetch("http://127.0.0.1:8000/api/account/login/", {
+    // const res = await fetch("http://127.0.0.1:8000/api/account/login/", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     email: email,
+    //     password: password
+    //   })
+    // })
+    
+    // if (res.ok) {
+    //   const data = await res.json()
+    //   dispatch(loginSuccess({
+    //     id: data.id,
+    //     email: data.email,
+    //     username: data.username,
+    //     token: data.jwt_token
+    //   }));
+    //   navigate("/", {replace: true})
+    // }
+  
+    const res = await fetch("http://127.0.0.1:8000/api/account/token/", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: email,
-        password: password
+        password: password,
       })
     })
-    
+
+    let data = await res.json()
+    console.log(data)
     if (res.ok) {
-      const data = await res.json()
+      const userData = jwtDecode(data.access)
       dispatch(loginSuccess({
-        id: data.id,
-        email: data.email,
-        username: data.username,
-        token: data.jwt_token
-      }));
+        accessToken: data.access,
+        refreshToken: data.refresh,
+        id: userData.user_id,
+        email: userData.email,
+        username: userData.username,
+      }))
       navigate("/", {replace: true})
+    } else {
+      alert("Something went wrong")
     }
   }
 
