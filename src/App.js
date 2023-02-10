@@ -18,13 +18,15 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-
+    if (loading) {
+      updateTokensFunc()
+    }
     const timeDelay = 1000 * 60 * 59
     const interval = setInterval(() => {
       if (refreshToken) {
         updateTokensFunc()
       }
-    }, timeDelay)
+    }, 5000)
     return () => clearInterval(interval)
 
   }, [loading, refreshToken, dispatch])
@@ -51,23 +53,29 @@ function App() {
       dispatch(logout())
     }
 
+    if (loading) {
+      setLoading(false)
+    }
   }
 
-  return (
-    <>
-      <NavBar />
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<HomePage />} exact />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/passwordreset" element={<PasswordReset />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/activate" element={<ActivatePage />} />
-        </Routes>
-      </div>
-    </>
-  );
+  // only render everything once the access token has been updated
+  if (loading === false) {
+    return (
+      <>
+        <NavBar />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<HomePage />} exact />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/passwordreset" element={<PasswordReset />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/activate" element={<ActivatePage />} />
+          </Routes>
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
