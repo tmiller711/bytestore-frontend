@@ -11,9 +11,11 @@ import Account from "./pages/account/Account";
 import ActivatePage from "./pages/ActivatePage";
 import PrivateRoute from "./utils/PrivateRoute";
 import {logout, updateTokens} from './userSlice';
+import Alert from "./components/alert/Alert";
 
 function App() {
   const [loading, setLoading] = useState(true)
+  const [alertShow, setAlertShow] = useState(true)
   const refreshToken = useSelector((state) => state.auth.refreshToken)
   const dispatch = useDispatch();
 
@@ -26,7 +28,7 @@ function App() {
       if (refreshToken) {
         updateTokensFunc()
       }
-    }, 5000)
+    }, timeDelay)
     return () => clearInterval(interval)
 
   }, [loading, refreshToken, dispatch])
@@ -44,7 +46,7 @@ function App() {
     })
     let data = await res.json()
 
-    if (res.status == 200) {
+    if (res.status === 200) {
       dispatch(updateTokens({
         accessToken: data.access,
         refreshToken: data.refresh,
