@@ -81,7 +81,7 @@ const Login = () => {
       </form>
       <p class="text--center">Not a member? <Link to="/register">Sign up now</Link> </p>
 
-       <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+      <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     </div>
   )
 }
