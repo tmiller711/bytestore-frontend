@@ -14,7 +14,6 @@ const NavBar = () => {
           <li style={{float: "right"}}><Link to="/account">Account</Link></li> : 
           <li style={{float: "right"}}><Link to="/login">Login</Link></li> 
         }
-          
       </ul>
     </div>
   )
