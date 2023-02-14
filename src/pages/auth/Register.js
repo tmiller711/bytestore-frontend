@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
+import { showAlert } from "../../slices/alertSlice"
+import { useDispatch } from "react-redux"
 import "./register.css"
 
 const Register = () => {
@@ -7,6 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -25,11 +28,16 @@ const Register = () => {
     })
     
     if (res.ok) {
-      // show alert
+      dispatch(showAlert({
+        message: `Activation Email Sent To '${email}'`,
+        type: 'success'
+      }))
       navigate("/", {replace: true})
     } else {
-      // show alert  
-      // showAlert("An error occurred", 'error')
+      dispatch(showAlert({
+        message: `Failed To Register Account`,
+        type: 'error'
+      }))
     }
   }
 

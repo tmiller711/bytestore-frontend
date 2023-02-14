@@ -68,7 +68,7 @@ function App() {
           <AlertBanner
             message={alert.message}
             type={alert.type}
-            onClose={() => dispatch(hideAlert)}
+            onClose={() => dispatch(hideAlert())}
           />
         )}
 
