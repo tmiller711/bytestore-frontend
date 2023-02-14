@@ -9,14 +9,14 @@ import NavBar from "./components/navbar/NavBar";
 import "./index.css"
 import Account from "./pages/account/Account";
 import ActivatePage from "./pages/ActivatePage";
-import PrivateRoute from "./utils/PrivateRoute";
-import {logout, updateTokens} from './userSlice';
-import Alert from "./components/alert/Alert";
+import {logout, updateTokens} from './slices/userSlice';
+import AlertBanner from "./components/alert/AlertBanner";
+import { hideAlert } from './slices/alertSlice'
 
 function App() {
   const [loading, setLoading] = useState(true)
-  const [alertShow, setAlertShow] = useState(true)
   const refreshToken = useSelector((state) => state.auth.refreshToken)
+  const alert = useSelector(state => state.alert)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,6 +64,14 @@ function App() {
   if (loading === false) {
     return (
       <>
+        {alert.show && (
+          <AlertBanner
+            message={alert.message}
+            type={alert.type}
+            onClose={() => dispatch(hideAlert)}
+          />
+        )}
+
         <NavBar />
         <div className="content">
           <Routes>

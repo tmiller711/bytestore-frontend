@@ -25,8 +25,11 @@ const Register = () => {
     })
     
     if (res.ok) {
-     // const data = await res.json()
+      // show alert
       navigate("/", {replace: true})
+    } else {
+      // show alert  
+      // showAlert("An error occurred", 'error')
     }
   }
 

@@ -1,18 +1,25 @@
 div.alert {
-    position: fixed;
-    width: 750px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: 20px;
-    z-index: 10;
-    background-color: #d44179;
-    color: white;
-    padding: 10px;
-    border-radius: 7px;
-    text-align: center;
+  position: fixed;
+  width: 750px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 20px;
+  z-index: 10;
+  color: white;
+  padding: 10px;
+  border-radius: 7px;
+  text-align: center;
 }
 
 .alert .close-alert {
   float: right;
+}
+
+.alert-success {
+  background-color: green;
+}
+
+.alert-error {
+  background-color: #d44179;
 }
