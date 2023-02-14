@@ -6,12 +6,13 @@ import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import PasswordReset from "./pages/auth/PasswordReset";
 import NavBar from "./components/navbar/NavBar";
-import "./index.css"
 import Account from "./pages/account/Account";
 import ActivatePage from "./pages/ActivatePage";
-import {logout, updateTokens} from './slices/userSlice';
 import AlertBanner from "./components/alert/AlertBanner";
 import { hideAlert } from './slices/alertSlice'
+import UpdateTokens from "./utils/UpdateTokens";
+
+import "./index.css"
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -21,44 +22,18 @@ function App() {
 
   useEffect(() => {
     if (loading) {
-      updateTokensFunc()
+      UpdateTokens()
+      setLoading(false)
     }
     const timeDelay = 1000 * 60 * 59
     const interval = setInterval(() => {
       if (refreshToken) {
-        updateTokensFunc()
+        UpdateTokens(loading)
       }
     }, timeDelay)
     return () => clearInterval(interval)
 
   }, [loading, refreshToken, dispatch])
-
-  // put this method in a separate file. maybe called utils.js?
-  const updateTokensFunc = async () => {
-    const res = await fetch("http://127.0.0.1:8000/api/account/token/refresh/", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'refresh': refreshToken
-      })
-    })
-    let data = await res.json()
-
-    if (res.status === 200) {
-      dispatch(updateTokens({
-        accessToken: data.access,
-        refreshToken: data.refresh,
-      }))
-    } else {
-      dispatch(logout())
-    }
-
-    if (loading) {
-      setLoading(false)
-    }
-  }
 
   // only render everything once the access token has been updated
   if (loading === false) {
