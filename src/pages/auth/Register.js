@@ -34,8 +34,9 @@ const Register = () => {
       }))
       navigate("/", {replace: true})
     } else {
+      const errors = await res.json()
       dispatch(showAlert({
-        message: `Failed To Register Account`,
+        message: Object.entries(errors)[0][1],
         type: 'error'
       }))
     }

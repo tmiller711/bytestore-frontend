@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import { showAlert } from "../slices/alertSlice"
+import { useDispatch } from "react-redux"
+import { useNavigate, Link } from "react-router-dom"
 
 const ActivatePage = () => {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [status, setStatus] = useState('')
+  const dispatch = useDispatch();
 
   useEffect(() => {
-
     activate()
   }, [])
 
@@ -16,24 +18,21 @@ const ActivatePage = () => {
     const token = searchParams.get('token')
     const res = await fetch(`http://localhost:8000/api/account/activate/${uid}/${token}/`)
     if (res.ok) {
-      setStatus('success')
+      dispatch(showAlert({
+        message: "Account Successfully Activated",
+        type: "success"
+      }))
     } else {
-      setStatus('failed')
+      dispatch(showAlert({
+        message: "Failed To Activate Account",
+        type: "error"
+      }))
     }
   }
 
-  if (status === '') {
-    // make loading symbol
+  return (
     <Spinner></Spinner>
-  } else if (status === 'success') {
-    return (
-      <h1>Account activated</h1> 
-    )
-  } else {
-    return (
-      <h1>Error activating account</h1>
-    )
-  }
+  )
 }
 
 export default ActivatePage;
