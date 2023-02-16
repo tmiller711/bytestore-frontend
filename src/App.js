@@ -13,6 +13,7 @@ import { hideAlert } from './slices/alertSlice'
 import UpdateTokens from "./utils/UpdateTokens";
 
 import "./index.css"
+import Footer from "./components/footer/Footer";
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -58,6 +59,7 @@ function App() {
             <Route path="/activate" element={<ActivatePage />} />
           </Routes>
         </div>
+        <Footer />
       </>
     );
   }
