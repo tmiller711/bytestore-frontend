@@ -21,11 +21,13 @@ li a {
 li a:hover:not(.active) {
   background-color: #d44179;
   border-radius: 5px;
+  text-decoration: none;
 }
 
 .active {
   background-color: #04AA6D;
 }li {
+  text-decoration: none;
   display: inline;
 }
 
