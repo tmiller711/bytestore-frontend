@@ -25,6 +25,7 @@ const Account = () => {
     return (
       <>
         <h1>{user.email}</h1>
+        <h2>Tier: {user.tier}</h2>
         <Link to="/" onClick={() => logoutFunc()}>
           Logout
         </Link>

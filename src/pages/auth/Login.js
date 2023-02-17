@@ -35,6 +35,7 @@ const Login = () => {
         id: userData.user_id,
         email: userData.email,
         username: userData.username,
+        tier: userData.tier
       }))
       navigate("/", {replace: true})
     } else {
