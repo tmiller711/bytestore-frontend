@@ -5,6 +5,7 @@ import "./login.css"
 import { loginSuccess } from "../../slices/userSlice"
 import jwtDecode from "jwt-decode"
 import { showAlert } from "../../slices/alertSlice"
+import 'boxicons/css/boxicons.min.css';
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -50,11 +51,11 @@ const Login = () => {
     <div className="login-page">
       <form onSubmit={onSubmit} method="#" class="form login">
         <div class="form__field">
-          <label for="login__email"><svg class="icon"></svg><span class="hidden">Email</span></label>
+          <label for="login__email"><i class='bx bxs-envelope' ></i><span class="hidden">Email</span></label>
           <input id="login__gmail" type="text" name="username" class="form__input" placeholder="Email" required onChange={(e) => setEmail(e.target.value)}/>
         </div>
         <div class="form__field">
-          <label for="login__password"><svg class="icon"><i class='bx bxs-user'></i></svg><span class="hidden">Password</span></label>
+          <label for="login__password"><i class='bx bxs-lock-alt'></i><span class="hidden">Password</span></label>
           <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required onChange={(e) => setPassword(e.target.value)}/>
         </div>
         <div class="form__field">

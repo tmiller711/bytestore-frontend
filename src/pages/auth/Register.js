@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { showAlert } from "../../slices/alertSlice"
 import { useDispatch } from "react-redux"
+import 'boxicons/css/boxicons.min.css';
 import "./register.css"
 
 const Register = () => {
@@ -46,15 +47,15 @@ const Register = () => {
     <div className="register-page">
       <form onSubmit={onSubmit} method="#" class="form login">
         <div class="form__field">
-          <label for="register__email"><svg class="icon"></svg><span class="hidden">Email</span></label>
+          <label for="register__email"><i class='bx bxs-envelope' ></i><span class="hidden">Email</span></label>
           <input id="register__email" type="text" name="username" class="form__input" placeholder="Email" required onChange={(e) => setEmail(e.target.value)}/>
         </div>
         <div class="form__field">
-          <label for="register__username"><svg class="icon"></svg><span class="hidden">Username</span></label>
+          <label for="register__username"><i class='bx bxs-user'></i><span class="hidden">Username</span></label>
           <input id="register__username" type="text" name="username" class="form__input" placeholder="Username" required onChange={(e) => setUsername(e.target.value)}/>
         </div>
         <div class="form__field">
-          <label for="register__password"><svg class="icon"><i class='bx bxs-user'></i></svg><span class="hidden">Password</span></label>
+          <label for="register__password"><i class='bx bxs-lock-alt'></i><span class="hidden">Password</span></label>
           <input id="register__password" type="password" name="password" class="form__input" placeholder="Password" required onChange={(e) => setPassword(e.target.value)}/>
         </div>
         <div class="form__field">
